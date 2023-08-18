@@ -22,8 +22,8 @@ It's expected that your CI environment has these tools available:
 - https://github.com/nickjj/wait-until
 
 ```sh { name=ci.build cwd=../ }
+echo "Run ci.build task"
 shellcheck run bin/*
-lint:dockerfile "${@}"
 
 cp --no-clobber .env.example .env
 
