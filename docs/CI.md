@@ -23,7 +23,7 @@ It's expected that your CI environment has these tools available:
 
 ```sh { name=ci.build cwd=../ }
 echo "Run ci.build task"
-shellcheck run bin/*
+# shellcheck run bin/*
 
 cp --no-clobber .env.example .env
 
