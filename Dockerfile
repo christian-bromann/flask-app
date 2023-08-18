@@ -27,8 +27,8 @@ ENV NODE_ENV="${NODE_ENV}" \
 COPY --chown=node:node . ..
 
 RUN if [ "${NODE_ENV}" != "development" ]; then \
-  npx runme run yarn:build:js && \
-  npx runme run yarn:build:css; \
+  runme run yarn:build:js && \
+  runme run yarn:build:css; \
   else mkdir -p /app/public; \
   fi
 
