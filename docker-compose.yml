@@ -100,11 +100,11 @@ services:
 
   js:
     <<: *default-assets
-    command: "../run yarn:build:js"
+    command: "npx runme run yarn:build:js"
 
   css:
     <<: *default-assets
-    command: "../run yarn:build:css"
+    command: "npx runme run yarn:build:css"
 
 volumes:
   postgres: {}

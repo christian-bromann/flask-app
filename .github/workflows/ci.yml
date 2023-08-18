@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - "main"
-      - "master"
 
 jobs:
   test:
@@ -16,14 +15,25 @@ jobs:
     steps:
       - uses: "actions/checkout@v2"
 
-      - name: "Install CI dependencies"
-        run: |
-          ./run ci:install-deps
+      - name: Install CI dependencies
+        uses: stateful/runme-action@v2
+        with:
+          workflows: ci:install-deps
 
-      - name: "Test"
+      - name: Cleanup
         run: |
           # Remove volumes in CI to avoid permission errors due to UID / GID.
           sed -i "s|.:/app|/tmp:/tmp|g" .env*
           sed -i "s|.:/app|/tmp:/tmp|g" docker-compose.yml
+      
+      - name: Setup
+        uses: stateful/runme-action@v2
+        with:
+          workflows: 
+        run:
+          workflows: ci:build
 
-          ./run ci:test
+      - name: Test
+        uses: stateful/runme-action@v2
+        with:
+          workflows: db.init test

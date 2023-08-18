@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+
+DC="${DC:-exec}"
+
+# If we're running in CI we need to disable TTY allocation for docker compose
+# commands that enable it by default, such as exec and run.
+TTY=""
+if [[ ! -t 1 ]]; then
+  TTY="-T"
+fi
+
+# -----------------------------------------------------------------------------
+# Helper functions start with _ and aren't listed in this script's help menu.
+# -----------------------------------------------------------------------------
+
+function _dc {
+  docker compose "${DC}" ${TTY} "${@}"
+}
+
+function _build_run_down {
+  docker compose build
+  docker compose run ${TTY} "${@}"
+  docker compose down
+}
+
+# -----------------------------------------------------------------------------
+
+function cmd {
+  # Run any command you want in the web container
+  _dc web "${@}"
+}
+
+function flask {
+  # Run any Flask commands
+  cmd flask "${@}"
+}
