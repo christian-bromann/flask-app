@@ -29,8 +29,6 @@ jobs:
       - name: Setup
         uses: stateful/runme-action@v2
         with:
-          workflows: 
-        run:
           workflows: ci:build
 
       - name: Test
