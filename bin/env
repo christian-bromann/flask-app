@@ -10,11 +10,11 @@ TTY=""
 # Helper functions start with _ and aren't listed in this script's help menu.
 # -----------------------------------------------------------------------------
 
-function _dc {
+_dc () {
   docker compose "${DC}" ${TTY} "${@}"
 }
 
-function _build_run_down {
+_build_run_down () {
   docker compose build
   docker compose run ${TTY} "${@}"
   docker compose down
@@ -22,12 +22,12 @@ function _build_run_down {
 
 # -----------------------------------------------------------------------------
 
-function cmd {
+cmd () {
   # Run any command you want in the web container
   _dc web "${@}"
 }
 
-function flask {
+flask () {
   # Run any Flask commands
   cmd flask "${@}"
 }
