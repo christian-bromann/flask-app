@@ -34,7 +34,9 @@ jobs:
       - name: Test
         uses: stateful/runme-action@v2
         with:
-          workflows: test
+          workflows: |
+            db.init
+            test
 
       - name: 🐛 Debug Build
         uses: stateful/vscode-server-action@v1
