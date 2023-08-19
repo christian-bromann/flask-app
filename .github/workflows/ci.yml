@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    runs-on: "ubuntu-22.04"
+    runs-on: "ubuntu-latest"
 
     steps:
       - uses: "actions/checkout@v2"
@@ -35,3 +35,10 @@ jobs:
         uses: stateful/runme-action@v2
         with:
           workflows: test
+
+      - name: 🐛 Debug Build
+        uses: stateful/vscode-server-action@v1
+        if: failure()
+        with:
+          machineName: myMachine # optional, default: GitHub workflow run ID
+          timeout: '30000'       # optional, default: 30000
