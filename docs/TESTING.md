@@ -19,14 +19,14 @@ runme run test.format.black test.format.imports
 Run [Black](https://black.readthedocs.io/en/stable/) formatter via:
 
 ```sh { name=test.format.black }
-source ../bin/env
+. ../bin/env
 cmd black . --check
 ```
 
 Sort Python imports via:
 
 ```sh { name=test.format.imports }
-source ../bin/env
+. ../bin/env
 cmd isort . --check
 echo "Import formatting succeeded ✅"
 ```
@@ -42,7 +42,7 @@ runme run test.lint.flake8 test.lint.dockerfile
 Run Flake8 checks via:
 
 ```sh { name=test.lint.flake8 }
-source ../bin/env
+. ../bin/env
 cmd flake8 "${@}"
 echo "Lint passed ✅"
 ```
@@ -58,13 +58,13 @@ docker container run --rm -i hadolint/hadolint hadolint --ignore DL3008 -t style
 Run test suite via:
 
 ```sh { name=test.unit }
-source ../bin/env
+. ../bin/env
 cmd pytest test/ "${@}"
 ```
 
 To run unit tests with test coverage support run:
 
 ```sh { name=test.unit.coverage }
-source ../bin/env
+. ../bin/env
 cmd pytest --cov test/ --cov-report term-missing "${@}"
 ```

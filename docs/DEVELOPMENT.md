@@ -21,7 +21,7 @@ docker compose up --build
 If you run this setup for the first time, make sure to initiate the database via:
 
 ```sh { name=db.init }
-source ../bin/env
+. ../bin/env
 cmd flask db reset --with-testdb
 echo "DB Reset Successful ✅"
 ```
