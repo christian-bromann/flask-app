@@ -34,4 +34,6 @@ jobs:
       - name: Test
         uses: stateful/runme-action@v2
         with:
-          workflows: db.init test
+          workflows: |
+            db.init
+            test
