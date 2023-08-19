@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-set -o errexit
-set -o pipefail
-
 DC="${DC:-exec}"
 
 # If we're running in CI we need to disable TTY allocation for docker compose
