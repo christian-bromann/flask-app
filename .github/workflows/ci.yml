@@ -38,9 +38,9 @@ jobs:
             db.init
             test
 
-      - name: 🐛 Debug Build
-        uses: stateful/vscode-server-action@v1
-        if: failure()
-        with:
-          machineName: myMachine # optional, default: GitHub workflow run ID
-          timeout: '30000'       # optional, default: 30000
+      # - name: 🐛 Debug Build
+      #   uses: stateful/vscode-server-action@v1
+      #   if: failure()
+      #   with:
+      #     machineName: myMachine # optional, default: GitHub workflow run ID
+      #     timeout: '30000'       # optional, default: 30000
