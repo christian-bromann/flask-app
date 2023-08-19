@@ -30,10 +30,6 @@ cp --no-clobber .env.example .env
 docker compose build
 docker compose up -d
 
-# shellcheck disable=SC1091
-ls -la
-cat ./.env
-source ./.env
 wait-until "docker compose exec -T \
 -e PGPASSWORD=${POSTGRES_PASSWORD} postgres \
 psql -U ${POSTGRES_USER} ${POSTGRES_USER} -c 'SELECT 1'"
