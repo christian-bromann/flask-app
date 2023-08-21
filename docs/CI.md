@@ -25,7 +25,7 @@ It's expected that your CI environment has these tools available:
 echo "Run ci.build task"
 # shellcheck run bin/*
 
-cp --no-clobber .env.example .env
+cp .env.example .env
 
 docker compose build
 docker compose up -d

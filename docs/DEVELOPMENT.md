@@ -8,7 +8,7 @@ First, clone the project by clicking on [![](https://badgen.net/badge/Clone%20th
 
 First, copy an example `.env` file because the real one is git ignored:
 
-```bash { name=init }
+```bash { name=init cwd=../ }
 cp .env.example .env
 ```
 
