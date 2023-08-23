@@ -12,6 +12,7 @@ Run quick post deployment tests:
 import requests
 response = requests.get("https://flask.fly.dev")
 assert response.status_code == 200
+assert "Learn to Build a SAAS App with Flask" in response.text
 print("Post Deployment Check successful ✅")
 ```
 
