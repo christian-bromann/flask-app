@@ -20,7 +20,14 @@ Generate changelog:
 
 ```js
 const cp = require('node:child_process')
-const log = cp.execSync('git log --pretty=oneline').toString('utf-8')
+const commitTypes = {
+    'feat': '🚀 New Feature',
+    'test': '🧪 Testing',
+    'chore': '🧹 Cleanups',
+    'backend': '🧱 Backend',
+    'other': '🧩 Miscellaneous'
+}
+const logGroups = cp.execSync('git log --pretty=oneline').toString('utf-8')
     // iterate over every line
     .split('\n')
     // get last 10 log lines
@@ -29,10 +36,21 @@ const log = cp.execSync('git log --pretty=oneline').toString('utf-8')
     .map((log) => log.split(' '))
     // filter last line
     .filter(([sha]) => Boolean(sha))
-    // format message
-    .map(([sha, ...message]) => `(fix) ${message.join(' ')} (${sha.slice(0, 10)})`)
-    .join('\n')
-console.log(log)
+    // group commit messages
+    .reduce((prev, [sha, ...message]) => {
+        const msg = message.join(' ')
+        const type = msg.match(/\(\w+\):/g)
+        const commitType = type ? type[0].slice(1, -2) : 'other'
+        if (!prev[commitType]) {
+            prev[commitType] = []
+        }
+        prev[commitType].push(type ? msg.slice(type[0].length + 1) : msg)
+        return prev
+    }, {})
+const changelog = Object.entries(logGroups).map(
+    ([commitType, changes]) => `## ${commitTypes[commitType]}\n- ${changes.join(`\n- `)}`
+).join('\n\n')
+console.log(changelog)
 ```
 
 Create git tag:
