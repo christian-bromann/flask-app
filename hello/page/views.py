@@ -20,10 +20,12 @@ def home():
         debug=DEBUG,
     )
 
+
 @page.get("/api/user")
 def api_get_users():
     users = User.query.all()
     return jsonify([user.serialize() for user in users])
+
 
 @page.get("/api/user/<int:id>")
 def api_get_user(id):
@@ -36,4 +38,4 @@ def api_post_user():
     user = User(**request.get_json())
     db.session.add(user)
     db.session.commit()
-    return jsonify({ "status": "success", "id": user.id })
+    return jsonify({"status": "success", "id": user.id})
