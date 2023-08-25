@@ -2,11 +2,13 @@ import os
 
 from flask import Blueprint
 from flask import __version__
-from flask import render_template, jsonify, request
+from flask import jsonify
+from flask import render_template
+from flask import request
 
-from hello.models.User import User
 from config.settings import DEBUG
 from hello.extensions import db
+from hello.models.User import User
 
 page = Blueprint("page", __name__, template_folder="templates")
 
